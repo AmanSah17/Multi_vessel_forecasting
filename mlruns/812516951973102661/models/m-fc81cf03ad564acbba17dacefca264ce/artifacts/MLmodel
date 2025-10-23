@@ -1,0 +1,23 @@
+artifact_path: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/812516951973102661/models/m-fc81cf03ad564acbba17dacefca264ce/artifacts
+flavors:
+  python_function:
+    config:
+      device: null
+    data: data
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pytorch
+    pickle_module_name: mlflow.pytorch.pickle_module
+    python_version: 3.10.0
+  pytorch:
+    code: null
+    model_data: data
+    pytorch_version: 2.6.0+cu124
+mlflow_version: 3.1.4
+model_id: m-fc81cf03ad564acbba17dacefca264ce
+model_size_bytes: 869386
+model_uuid: m-fc81cf03ad564acbba17dacefca264ce
+prompts: null
+run_id: fdb0ead00f314d26b856723176389b03
+utc_time_created: '2025-10-23 21:36:30.686688'

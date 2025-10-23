@@ -1,0 +1,14 @@
+artifact_uri: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/951138243023074188/d3097cc9b46f433680c93b8d98602374/artifacts
+end_time: 1761253599876
+entry_point_name: ''
+experiment_id: '951138243023074188'
+lifecycle_stage: active
+run_id: d3097cc9b46f433680c93b8d98602374
+run_name: nimble-owl-95
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761253555697
+status: 4
+tags: []
+user_id: amans

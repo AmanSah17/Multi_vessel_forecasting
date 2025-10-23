@@ -1,0 +1,6 @@
+artifact_location: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/951138243023074188
+creation_time: 1761253555405
+experiment_id: '951138243023074188'
+last_update_time: 1761253555405
+lifecycle_stage: active
+name: LSTM_AIS_Full_Pipeline

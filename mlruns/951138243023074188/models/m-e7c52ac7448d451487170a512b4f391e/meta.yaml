@@ -1,0 +1,10 @@
+artifact_location: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/951138243023074188/models/m-e7c52ac7448d451487170a512b4f391e/artifacts
+creation_timestamp: 1761254117852
+experiment_id: '951138243023074188'
+last_updated_timestamp: 1761254129366
+model_id: m-e7c52ac7448d451487170a512b4f391e
+model_type: null
+name: lstm_model
+source_run_id: 8e1cd422dbc0402b9f93184ab2c8b8d8
+status: 2
+status_message: null

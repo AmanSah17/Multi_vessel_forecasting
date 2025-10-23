@@ -16,15 +16,15 @@ import logging
 import pickle
 from pathlib import Path
 
-from data_preprocessing import VesselDataPreprocessor
-from trajectory_prediction import (
+from .data_preprocessing import VesselDataPreprocessor
+from .trajectory_prediction import (
     KalmanFilterPredictor, ARIMAPredictor, LSTMPredictor, EnsemblePredictor
 )
-from anomaly_detection import (
+from .anomaly_detection import (
     IsolationForestDetector, RuleBasedDetector, EnsembleAnomalyDetector,
     create_default_rule_detector
 )
-from trajectory_verification import TrajectoryVerifier
+from .trajectory_verification import TrajectoryVerifier
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -50,18 +50,24 @@ class TrainingPipeline:
         self.anomaly_detectors = {}
         self.metrics = {}
     
-    def load_data(self, filepath: str) -> pd.DataFrame:
+    def load_data(self, data_input) -> pd.DataFrame:
         """
         Load and preprocess raw data.
-        
+
         Args:
-            filepath: Path to raw AIS data
-            
+            data_input: Either a file path (str) or a DataFrame
+
         Returns:
             Preprocessed dataframe
         """
-        logger.info(f"Loading data from {filepath}")
-        df = pd.read_csv(filepath)
+        # Handle both DataFrame and file path inputs
+        if isinstance(data_input, pd.DataFrame):
+            logger.info(f"Using provided DataFrame with {len(data_input)} records")
+            df = data_input.copy()
+        else:
+            logger.info(f"Loading data from {data_input}")
+            df = pd.read_csv(data_input)
+
         df = self.preprocessor.preprocess(df)
         logger.info(f"Loaded {len(df)} records for {df['MMSI'].nunique()} vessels")
         return df
@@ -258,19 +264,19 @@ class TrainingPipeline:
         logger.info(f"Loaded {len(self.prediction_models)} prediction models")
         logger.info(f"Loaded {len(self.anomaly_detectors)} anomaly detectors")
     
-    def run_full_pipeline(self, data_filepath: str):
+    def run_full_pipeline(self, data_input):
         """
         Run complete training pipeline.
-        
+
         Args:
-            data_filepath: Path to raw AIS data
+            data_input: Either a file path (str) or a DataFrame with AIS data
         """
         logger.info("=" * 50)
         logger.info("Starting full training pipeline")
         logger.info("=" * 50)
-        
+
         # Load and preprocess
-        df = self.load_data(data_filepath)
+        df = self.load_data(data_input)
         
         # Feature engineering
         df = self.engineer_features(df)

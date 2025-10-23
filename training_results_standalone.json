@@ -1,0 +1,21 @@
+{
+  "data": {
+    "records": 50000,
+    "vessels": 11589
+  },
+  "sequences": {
+    "count": 14742
+  },
+  "training": {
+    "epochs": 50,
+    "final_train_loss": 105.04562636378012,
+    "final_val_loss": 24.66884994506836,
+    "final_train_mae": 7.832906723022461,
+    "final_val_mae": 3.759984016418457,
+    "best_val_loss": 24.159372329711914,
+    "best_val_mae": 3.7178759574890137
+  },
+  "verification": {
+    "avg_smoothness": 0.44975239729046873
+  }
+}

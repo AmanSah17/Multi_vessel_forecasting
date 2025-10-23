@@ -1,0 +1,14 @@
+artifact_uri: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/812516951973102661/fdb0ead00f314d26b856723176389b03/artifacts
+end_time: 1761255397999
+entry_point_name: ''
+experiment_id: '812516951973102661'
+lifecycle_stage: active
+run_id: fdb0ead00f314d26b856723176389b03
+run_name: wistful-moose-578
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761254936331
+status: 3
+tags: []
+user_id: amans

@@ -1,0 +1,6 @@
+artifact_location: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/812516951973102661
+creation_time: 1761254936078
+experiment_id: '812516951973102661'
+last_update_time: 1761254936078
+lifecycle_stage: active
+name: Enhanced_LSTM_AIS_Pipeline
