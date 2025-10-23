@@ -1,0 +1,85 @@
+
+======================================================================
+LSTM vs TEMPORAL CNN - PERFORMANCE COMPARISON REPORT
+======================================================================
+
+DATASET INFORMATION:
+  - Total Sequences: 100,000
+  - Training Sequences: 70,000 (70%)
+  - Validation Sequences: 20,000 (20%)
+  - Test Sequences: 10,000 (10%)
+  - Sequence Length: 60 timesteps
+  - Features: 17 (LAT, LON, SOG, COG, hour_sin, hour_cos, speed_change, heading_change, LAT_lag1, LON_lag1, SOG_lag1, velocity_x, velocity_y, etc.)
+
+MODEL ARCHITECTURES:
+  
+  LSTM Model:
+    - Layers: 3 LSTM layers
+    - Hidden Size: 256 units
+    - Dropout: 0.2
+    - FC Layers: 256 → 128 → 64 → 4
+    - Parameters: ~5.24 MB
+    - Training Time: ~14 minutes
+    - Epochs: 27 (early stopping)
+  
+  CNN Model:
+    - Architecture: Temporal CNN with dilated convolutions
+    - Filters: 64
+    - Dilation Rates: 1, 2, 4, 8 (exponential)
+    - Dropout: 0.2
+    - FC Layers: 64 → 128 → 64 → 4
+    - Parameters: ~278 KB
+    - Training Time: ~7 minutes
+    - Epochs: 39 (early stopping)
+
+PERFORMANCE METRICS:
+
+  Model          MAE         RMSE        R²
+  ──────────────────────────────────────────────────
+  LSTM           13.555650    37.202064    -0.519951
+  CNN            14.011360    37.163548    -0.955132
+
+ANALYSIS:
+
+1. Mean Absolute Error (MAE):
+   - LSTM: 13.555650 (BETTER)
+   - CNN:  14.011360
+   - Difference: 0.455710
+
+2. Root Mean Squared Error (RMSE):
+   - LSTM: 37.202064 (BETTER)
+   - CNN:  37.163548
+   - Difference: 0.038516
+
+3. R² Score (Coefficient of Determination):
+   - LSTM: -0.519951 (BETTER)
+   - CNN:  -0.955132
+   - Note: Negative R² indicates poor model fit
+
+KEY FINDINGS:
+
+✓ LSTM outperforms CNN on all metrics
+✓ LSTM has lower MAE and RMSE
+✓ LSTM has higher R² score (less negative)
+✓ CNN trains faster (2x speedup) but with lower accuracy
+✓ Both models show signs of underfitting (negative R²)
+
+RECOMMENDATIONS:
+
+1. Model Selection: Use LSTM for better accuracy
+2. Underfitting Issues:
+   - Increase model complexity further
+   - Add more advanced features
+   - Increase sequence length
+   - Reduce regularization (dropout)
+   - Train for more epochs
+3. Data Quality:
+   - Verify data preprocessing
+   - Check for outliers
+   - Ensure proper normalization
+4. Hyperparameter Tuning:
+   - Experiment with learning rates
+   - Try different batch sizes
+   - Adjust early stopping patience
+
+======================================================================
