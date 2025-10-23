@@ -1,0 +1,14 @@
+artifact_uri: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/789390963510343692/cdc263579d84437bacd95f1d0df6d58d/artifacts
+end_time: 1761243883648
+entry_point_name: ''
+experiment_id: '789390963510343692'
+lifecycle_stage: active
+run_id: cdc263579d84437bacd95f1d0df6d58d
+run_name: victorious-grub-975
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761243883497
+status: 3
+tags: []
+user_id: amans

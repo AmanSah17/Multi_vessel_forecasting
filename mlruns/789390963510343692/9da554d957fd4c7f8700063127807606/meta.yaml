@@ -1,0 +1,14 @@
+artifact_uri: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/789390963510343692/9da554d957fd4c7f8700063127807606/artifacts
+end_time: 1761244280755
+entry_point_name: ''
+experiment_id: '789390963510343692'
+lifecycle_stage: active
+run_id: 9da554d957fd4c7f8700063127807606
+run_name: wistful-yak-269
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761244116939
+status: 3
+tags: []
+user_id: amans

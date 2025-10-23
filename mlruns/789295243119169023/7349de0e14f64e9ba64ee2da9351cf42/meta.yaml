@@ -1,0 +1,14 @@
+artifact_uri: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/789295243119169023/7349de0e14f64e9ba64ee2da9351cf42/artifacts
+end_time: 1761244328366
+entry_point_name: ''
+experiment_id: '789295243119169023'
+lifecycle_stage: active
+run_id: 7349de0e14f64e9ba64ee2da9351cf42
+run_name: magnificent-bear-411
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761244321218
+status: 4
+tags: []
+user_id: amans

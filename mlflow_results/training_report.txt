@@ -1,0 +1,46 @@
+
+MARITIME VESSEL FORECASTING - MLFLOW TRAINING REPORT
+======================================================================
+
+EXECUTION TIME: 2025-10-24T00:03:17.135409
+MLFLOW RUN ID: 88f79155b99d4a0ba1e4f6603fd32175
+
+DATA STATISTICS:
+  Raw Records: 50,000
+  Processed Records: 499,910
+  Vessels: 10
+  Date Range: 2020-01-03 00:00:00 to 2020-02-06 17:19:00
+
+DATA SPLIT:
+  Training: 299,946 (60.0%)
+  Validation: 99,982 (20.0%)
+  Test: 99,982 (20.0%)
+
+EVALUATION METRICS:
+{
+  "prediction": {},
+  "anomaly_detection": {},
+  "trajectory_verification": {
+    "200000000": 0.9110954521676073,
+    "200000006": 0.8380552375652401,
+    "200000009": 0.8686963993330785,
+    "200000007": 0.9109053505052351,
+    "200000004": 0.9198372098019281,
+    "200000008": 0.910168132158435,
+    "200000001": 0.8465142113645057,
+    "200000005": 0.8379184712524295,
+    "200000003": 0.8594611994773409,
+    "200000002": 0.9368030894313386
+  }
+}
+
+OUTPUT FILES:
+  [OK] data_split.png
+  [OK] training_curves.png
+  [OK] mlflow_training.log
+  [OK] models/ (trained models)
+
+MLFLOW TRACKING:
+  View results: mlflow ui
+
+======================================================================
