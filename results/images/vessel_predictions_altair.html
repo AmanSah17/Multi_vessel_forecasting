@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.20.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-009d145fd595b5c3be27843ebe79d7fb"}, "facet": {"column": {"field": "MMSI", "title": "Vessel", "type": "nominal"}}, "spec": {"mark": {"type": "line", "opacity": 0.7}, "encoding": {"color": {"field": "model", "scale": {"domain": ["Actual", "LSTM", "CNN"], "range": ["black", "#1f77b4", "#d62728"]}, "type": "nominal"}, "tooltip": [{"field": "MMSI", "type": "nominal"}, {"field": "model", "type": "nominal"}, {"field": "idx", "type": "quantitative"}, {"field": "lon", "type": "quantitative"}, {"field": "lat", "type": "quantitative"}], "x": {"field": "lon", "title": "Longitude", "type": "quantitative"}, "y": {"field": "lat", "title": "Latitude", "type": "quantitative"}}, "height": 220, "width": 300}, "columns": 5, "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-009d145fd595b5c3be27843ebe79d7fb": [{"MMSI": "367430210", "idx": 0, "lon": -91.67408752441406, "lat": 34.16144943237305, "model": "Actual"}, {"MMSI": "367430210", "idx": 0, "lon": -105.3531494140625, "lat": 52.36154556274414, "model": "LSTM"}, {"MMSI": "367430210", "idx": 0, "lon": -105.44412231445312, "lat": 43.4124870300293, "model": "CNN"}, {"MMSI": "367430210", "idx": 1, "lon": -91.7068862915039, "lat": 34.17591094970703, "model": "Actual"}, {"MMSI": "367430210", "idx": 1, "lon": -105.3531494140625, "lat": 52.36154556274414, "model": "LSTM"}, {"MMSI": "367430210", "idx": 1, "lon": -105.56221008300781, "lat": 43.4615592956543, "model": "CNN"}, {"MMSI": "367430210", "idx": 2, "lon": -91.75727081298828, "lat": 34.167808532714844, "model": "Actual"}, {"MMSI": "367430210", "idx": 2, "lon": -105.3531494140625, "lat": 52.36154556274414, "model": "LSTM"}, {"MMSI": "367430210", "idx": 2, "lon": -105.76586151123047, "lat": 43.54606246948242, "model": "CNN"}, {"MMSI": "367430210", "idx": 3, "lon": -91.80254364013672, "lat": 34.20825958251953, "model": "Actual"}, {"MMSI": "367430210", "idx": 3, "lon": -105.3531494140625, "lat": 52.36154556274414, "model": "LSTM"}, {"MMSI": "367430210", "idx": 3, "lon": -105.99822235107422, "lat": 43.64243698120117, "model": "CNN"}, {"MMSI": "367430210", "idx": 4, "lon": -91.8268814086914, "lat": 34.211700439453125, "model": "Actual"}, {"MMSI": "367430210", "idx": 4, "lon": -105.3531494140625, "lat": 52.36154556274414, "model": "LSTM"}, {"MMSI": "367430210", "idx": 4, "lon": -106.18226623535156, "lat": 43.71887969970703, "model": "CNN"}, {"MMSI": "367430210", "idx": 5, "lon": -91.85420989990234, "lat": 34.226951599121094, "model": "Actual"}, {"MMSI": "367430210", "idx": 5, "lon": -105.3531494140625, "lat": 52.36154556274414, "model": "LSTM"}, {"MMSI": "367430210", "idx": 5, "lon": -106.42892456054688, "lat": 43.821048736572266, "model": "CNN"}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

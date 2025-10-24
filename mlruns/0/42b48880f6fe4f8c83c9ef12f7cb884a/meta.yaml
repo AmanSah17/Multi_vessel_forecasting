@@ -1,0 +1,14 @@
+artifact_uri: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/0/42b48880f6fe4f8c83c9ef12f7cb884a/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 42b48880f6fe4f8c83c9ef12f7cb884a
+run_name: Comprehensive_MultiModel_Pipeline
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761271480450
+status: 1
+tags: []
+user_id: amans
