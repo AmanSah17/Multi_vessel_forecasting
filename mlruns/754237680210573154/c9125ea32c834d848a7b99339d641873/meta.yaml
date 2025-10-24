@@ -1,0 +1,14 @@
+artifact_uri: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/754237680210573154/c9125ea32c834d848a7b99339d641873/artifacts
+end_time: 1761340799833
+entry_point_name: ''
+experiment_id: '754237680210573154'
+lifecycle_stage: active
+run_id: c9125ea32c834d848a7b99339d641873
+run_name: XGBoost_PCA
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761340787670
+status: 3
+tags: []
+user_id: amans

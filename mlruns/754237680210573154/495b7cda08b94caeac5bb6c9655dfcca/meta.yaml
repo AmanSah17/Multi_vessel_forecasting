@@ -1,0 +1,14 @@
+artifact_uri: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/754237680210573154/495b7cda08b94caeac5bb6c9655dfcca/artifacts
+end_time: 1761342943403
+entry_point_name: ''
+experiment_id: '754237680210573154'
+lifecycle_stage: active
+run_id: 495b7cda08b94caeac5bb6c9655dfcca
+run_name: RandomForest_PCA
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761342845551
+status: 3
+tags: []
+user_id: amans

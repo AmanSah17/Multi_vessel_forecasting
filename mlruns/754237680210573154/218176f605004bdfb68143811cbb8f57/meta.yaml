@@ -1,0 +1,14 @@
+artifact_uri: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/754237680210573154/218176f605004bdfb68143811cbb8f57/artifacts
+end_time: 1761339034058
+entry_point_name: ''
+experiment_id: '754237680210573154'
+lifecycle_stage: active
+run_id: 218176f605004bdfb68143811cbb8f57
+run_name: NN_PCA
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761339030787
+status: 4
+tags: []
+user_id: amans
