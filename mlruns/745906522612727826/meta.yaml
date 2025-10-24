@@ -1,0 +1,6 @@
+artifact_location: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/745906522612727826
+creation_time: 1761334755285
+experiment_id: '745906522612727826'
+last_update_time: 1761334755285
+lifecycle_stage: active
+name: Kalman_ARIMA_Comparison_v2

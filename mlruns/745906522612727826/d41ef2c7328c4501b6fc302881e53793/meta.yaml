@@ -1,0 +1,14 @@
+artifact_uri: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/745906522612727826/d41ef2c7328c4501b6fc302881e53793/artifacts
+end_time: 1761334767506
+entry_point_name: ''
+experiment_id: '745906522612727826'
+lifecycle_stage: active
+run_id: d41ef2c7328c4501b6fc302881e53793
+run_name: Kalman_ARIMA_Only
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761334759194
+status: 3
+tags: []
+user_id: amans
