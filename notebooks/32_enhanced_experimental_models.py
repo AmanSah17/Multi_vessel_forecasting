@@ -257,7 +257,7 @@ class TinyLSTMWithHaversine(nn.Module):
 
 # ======================== TRAINING FUNCTIONS ========================
 
-def train_tiny_lstm_enhanced(X_train, y_train, X_val, y_val, epochs=100, batch_size=256):
+def train_tiny_lstm_enhanced(X_train, y_train, X_val, y_val, epochs=50, batch_size=256):
     """Train Tiny LSTM with Haversine features."""
     logger.info(f"\n{'='*80}\nTRAINING TINY LSTM WITH HAVERSINE FEATURES\n{'='*80}")
     

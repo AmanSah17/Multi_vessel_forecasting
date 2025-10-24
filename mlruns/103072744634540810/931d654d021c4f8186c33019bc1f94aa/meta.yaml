@@ -1,0 +1,14 @@
+artifact_uri: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/103072744634540810/931d654d021c4f8186c33019bc1f94aa/artifacts
+end_time: 1761337613501
+entry_point_name: ''
+experiment_id: '103072744634540810'
+lifecycle_stage: active
+run_id: 931d654d021c4f8186c33019bc1f94aa
+run_name: Kalman_LSTM_Evaluation
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761337610878
+status: 3
+tags: []
+user_id: amans

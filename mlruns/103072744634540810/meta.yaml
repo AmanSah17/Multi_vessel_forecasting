@@ -1,0 +1,6 @@
+artifact_location: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/103072744634540810
+creation_time: 1761335038768
+experiment_id: '103072744634540810'
+last_update_time: 1761335038768
+lifecycle_stage: active
+name: Kalman_LSTM_Hybrid_v1
