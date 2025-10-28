@@ -1,6 +1,7 @@
 """
 Advanced XGBoost Pipeline for Vessel Trajectory Forecasting
-- Advanced feature extraction (EDA-based + tsfresh)
+- Advanced feature extraction (EDA-based
+)
 - Haversine distance for spatial nonlinearity
 - PCA + Standardization
 - Extensive hyperparameter tuning

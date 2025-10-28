@@ -1,0 +1,6 @@
+artifact_location: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/407522099988086209
+creation_time: 1761627290520
+experiment_id: '407522099988086209'
+last_update_time: 1761627290520
+lifecycle_stage: active
+name: XGBoost_Vessel_Trajectory_Forecasting
