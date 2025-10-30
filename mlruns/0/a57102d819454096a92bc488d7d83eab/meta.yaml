@@ -1,0 +1,14 @@
+artifact_uri: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/0/a57102d819454096a92bc488d7d83eab/artifacts
+end_time: 1761649379266
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a57102d819454096a92bc488d7d83eab
+run_name: smiling-skunk-670
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761649360322
+status: 3
+tags: []
+user_id: amans

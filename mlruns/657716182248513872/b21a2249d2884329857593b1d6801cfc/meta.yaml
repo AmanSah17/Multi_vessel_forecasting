@@ -1,0 +1,14 @@
+artifact_uri: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/657716182248513872/b21a2249d2884329857593b1d6801cfc/artifacts
+end_time: 1761652837634
+entry_point_name: ''
+experiment_id: '657716182248513872'
+lifecycle_stage: active
+run_id: b21a2249d2884329857593b1d6801cfc
+run_name: classy-shrike-701
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761651143871
+status: 3
+tags: []
+user_id: amans

@@ -1,0 +1,14 @@
+artifact_uri: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/0/91cdf220f45444419572a4b29239e163/artifacts
+end_time: 1761649418013
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 91cdf220f45444419572a4b29239e163
+run_name: clean-flea-761
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761649397833
+status: 3
+tags: []
+user_id: amans

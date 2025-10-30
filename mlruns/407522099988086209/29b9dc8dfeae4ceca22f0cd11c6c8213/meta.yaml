@@ -1,0 +1,14 @@
+artifact_uri: file:///F:/PyTorch_GPU/maritime_vessel_forecasting/Multi_vessel_forecasting/mlruns/407522099988086209/29b9dc8dfeae4ceca22f0cd11c6c8213/artifacts
+end_time: 1761641093486
+entry_point_name: ''
+experiment_id: '407522099988086209'
+lifecycle_stage: active
+run_id: 29b9dc8dfeae4ceca22f0cd11c6c8213
+run_name: gifted-calf-657
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761641039653
+status: 4
+tags: []
+user_id: amans

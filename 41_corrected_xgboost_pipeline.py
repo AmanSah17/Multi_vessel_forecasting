@@ -265,76 +265,86 @@ def preprocess_data(train_data, val_data, test_data):
 
 
 def objective(trial, X_train, y_train, X_val, y_val):
-    """Optuna objective function with MLflow logging."""
+    """Optuna objective function with MLflow logging - AGGRESSIVE MEMORY OPTIMIZATION."""
     params = {
-        'n_estimators': trial.suggest_int('n_estimators', 100, 500, step=50),
-        'max_depth': trial.suggest_int('max_depth', 3, 20),
-        'learning_rate': trial.suggest_float('learning_rate', 0.0001, 0.3, log=True),
-        'subsample': trial.suggest_float('subsample', 0.5, 1.0),
-        'colsample_bytree': trial.suggest_float('colsample_bytree', 0.5, 1.0),
-        'min_child_weight': trial.suggest_int('min_child_weight', 1, 10),
-        'gamma': trial.suggest_float('gamma', 0, 5),
-        'reg_alpha': trial.suggest_float('reg_alpha', 0, 1),
-        'reg_lambda': trial.suggest_float('reg_lambda', 0, 1),
+        'n_estimators': trial.suggest_int('n_estimators', 50, 100, step=50),  # Reduced: 50-100
+        'max_depth': trial.suggest_int('max_depth', 3, 8),  # Reduced: 3-8
+        'learning_rate': trial.suggest_float('learning_rate', 0.05, 0.15, log=True),
+        'subsample': trial.suggest_float('subsample', 0.8, 1.0),
+        'colsample_bytree': trial.suggest_float('colsample_bytree', 0.8, 1.0),
+        'min_child_weight': trial.suggest_int('min_child_weight', 1, 3),
+        'gamma': trial.suggest_float('gamma', 0, 0.1),
+        'reg_alpha': trial.suggest_float('reg_alpha', 0, 0.1),
+        'reg_lambda': trial.suggest_float('reg_lambda', 0, 0.1),
     }
 
     with mlflow.start_run(nested=True):
         # Log hyperparameters
         mlflow.log_params(params)
 
-        # Train model
-        model = MultiOutputRegressor(XGBRegressor(**params, verbosity=0, random_state=42))
-        model.fit(X_train, y_train)
+        try:
+            # Train model with memory optimization
+            model = MultiOutputRegressor(
+                XGBRegressor(**params, verbosity=0, random_state=42, tree_method='hist')
+            )
+            model.fit(X_train, y_train)
 
-        # Validate
-        y_pred_train = model.predict(X_train)
-        y_pred_val = model.predict(X_val)
+            # Validate
+            y_pred_val = model.predict(X_val)
 
-        # Calculate metrics
-        mae_train = mean_absolute_error(y_train, y_pred_train)
-        mae_val = mean_absolute_error(y_val, y_pred_val)
-        rmse_val = np.sqrt(mean_squared_error(y_val, y_pred_val))
-        r2_val = r2_score(y_val, y_pred_val)
+            # Calculate metrics
+            mae_val = mean_absolute_error(y_val, y_pred_val)
+            rmse_val = np.sqrt(mean_squared_error(y_val, y_pred_val))
+            r2_val = r2_score(y_val, y_pred_val)
 
-        # Log metrics
-        mlflow.log_metric("train_mae", mae_train)
-        mlflow.log_metric("val_mae", mae_val)
-        mlflow.log_metric("val_rmse", rmse_val)
-        mlflow.log_metric("val_r2", r2_val)
+            # Log metrics
+            mlflow.log_metric("val_mae", mae_val)
+            mlflow.log_metric("val_rmse", rmse_val)
+            mlflow.log_metric("val_r2", r2_val)
 
-        logger.info(f"Trial {trial.number}: MAE_train={mae_train:.4f}, MAE_val={mae_val:.4f}, R2={r2_val:.4f}")
+            logger.info(f"Trial {trial.number}: MAE_val={mae_val:.4f}, R2={r2_val:.4f}")
 
-    return mae_val , r2_val
+            # Clean up to free memory
+            del model
+            import gc
+            gc.collect()
+
+        except Exception as e:
+            logger.error(f"Trial {trial.number} failed: {str(e)[:100]}")
+            return float('inf')
+
+    return mae_val
 
 
-def hyperparameter_tuning(X_train, y_train, X_val, y_val, n_trials=100):
-    """Tune on validation set with MLflow logging."""
-    logger.info("\n[3/7] Hyperparameter tuning with Optuna...")
+def hyperparameter_tuning(X_train, y_train, X_val, y_val, n_trials=20):
+    """Tune on validation set with MLflow logging - MEMORY OPTIMIZED."""
+    logger.info("\n[3/7] Hyperparameter tuning with Optuna (MEMORY OPTIMIZED)...")
 
-    with mlflow.start_run(run_name="hyperparameter_tuning"):
-        mlflow.log_param("n_trials", n_trials)
-        mlflow.log_param("train_size", len(X_train))
-        mlflow.log_param("val_size", len(X_val))
+    # Log hyperparameter tuning parameters to current run
+    mlflow.log_param("n_trials", n_trials)
+    mlflow.log_param("train_size", len(X_train))
+    mlflow.log_param("val_size", len(X_val))
 
-        study = optuna.create_study(
-            direction='minimize',
-            pruner=MedianPruner(),
-            sampler=optuna.samplers.TPESampler(seed=42)
-        )
+    study = optuna.create_study(
+        direction='minimize',
+        pruner=MedianPruner(n_startup_trials=5, n_warmup_steps=2),
+        sampler=optuna.samplers.TPESampler(seed=42, n_startup_trials=5)
+    )
 
-        study.optimize(
-            lambda trial: objective(trial, X_train, y_train, X_val, y_val),
-            n_trials=n_trials,
-            show_progress_bar=True
-        )
+    study.optimize(
+        lambda trial: objective(trial, X_train, y_train, X_val, y_val),
+        n_trials=n_trials,
+        show_progress_bar=True,
+        gc_after_trial=True  # Garbage collection after each trial
+    )
 
-        logger.info(f"Best MAE: {study.best_value:.4f}")
-        logger.info(f"Best params: {study.best_params}")
+    logger.info(f"Best MAE: {study.best_value:.4f}")
+    logger.info(f"Best params: {study.best_params}")
 
-        # Log best params and metrics
-        mlflow.log_params(study.best_params)
-        mlflow.log_metric("best_val_mae", study.best_value)
-        mlflow.log_metric("best_trial_number", study.best_trial.number)
+    # Log best params and metrics
+    mlflow.log_params(study.best_params)
+    mlflow.log_metric("best_val_mae", study.best_value)
+    mlflow.log_metric("best_trial_number", study.best_trial.number)
 
     return study.best_params
 
@@ -343,27 +353,26 @@ def train_final_model(X_train, y_train, X_val, y_val, best_params):
     """Train final model on train+val, evaluate on test."""
     logger.info("\n[4/7] Training final model on train+val...")
 
-    with mlflow.start_run(run_name="final_model_training"):
-        # Log training configuration
-        mlflow.log_params(best_params)
-        mlflow.log_param("training_data_size", len(X_train) + len(X_val))
+    # Log training configuration to current run
+    mlflow.log_params(best_params)
+    mlflow.log_param("training_data_size", len(X_train) + len(X_val))
 
-        # Combine train and val for final training
-        X_combined = np.vstack([X_train, X_val])
-        y_combined = np.vstack([y_train, y_val])
+    # Combine train and val for final training
+    X_combined = np.vstack([X_train, X_val])
+    y_combined = np.vstack([y_train, y_val])
 
-        model = MultiOutputRegressor(XGBRegressor(**best_params, verbosity=0, random_state=42))
-        model.fit(X_combined, y_combined)
+    model = MultiOutputRegressor(XGBRegressor(**best_params, verbosity=0, random_state=42))
+    model.fit(X_combined, y_combined)
 
-        # Log training metrics
-        y_pred_combined = model.predict(X_combined)
-        mae_combined = mean_absolute_error(y_combined, y_pred_combined)
-        r2_combined = r2_score(y_combined, y_pred_combined)
+    # Log training metrics
+    y_pred_combined = model.predict(X_combined)
+    mae_combined = mean_absolute_error(y_combined, y_pred_combined)
+    r2_combined = r2_score(y_combined, y_pred_combined)
 
-        mlflow.log_metric("final_train_mae", mae_combined)
-        mlflow.log_metric("final_train_r2", r2_combined)
+    mlflow.log_metric("final_train_mae", mae_combined)
+    mlflow.log_metric("final_train_r2", r2_combined)
 
-        logger.info(f"Final model trained - MAE: {mae_combined:.4f}, R2: {r2_combined:.4f}")
+    logger.info(f"Final model trained - MAE: {mae_combined:.4f}, R2: {r2_combined:.4f}")
 
     return model
 
@@ -480,8 +489,8 @@ def main():
         mlflow.log_param("pca_components", pca.n_components_)
         mlflow.log_metric("pca_variance_explained", pca.explained_variance_ratio_.sum())
 
-        # Step 3: Hyperparameter tuning on val
-        best_params = hyperparameter_tuning(X_train_pca, y_train, X_val_pca, y_val, n_trials=100)
+        # Step 3: Hyperparameter tuning on val (REDUCED TO 5 TRIALS FOR MEMORY OPTIMIZATION)
+        best_params = hyperparameter_tuning(X_train_pca, y_train, X_val_pca, y_val, n_trials=5)
 
         # Step 4: Train final model on train+val
         model = train_final_model(X_train_pca, y_train, X_val_pca, y_val, best_params)
